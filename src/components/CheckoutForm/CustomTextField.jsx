@@ -1,10 +1,10 @@
 import React from "react";
 // * Material UI
-import { Grid, TextField, Input, Select, MenuItem } from "@material-ui/core";
+import { Grid, TextField, Input } from "@material-ui/core";
 // * React-hook-form
 import { useFormContext, Controller } from "react-hook-form";
 
-const FormInput = ({ name, label, required }) => {
+const FormInput = ({ name, label }) => {
     //  * Get access to the methods insider 
     const { control } = useFormContext();
     //  ? REACT_HOOK_FORMS
@@ -23,7 +23,7 @@ const FormInput = ({ name, label, required }) => {
                 fullWidth
                 name={name}
                 label={label}
-                required={required}
+                required
 
             />
         </Grid>

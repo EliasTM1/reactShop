@@ -18,8 +18,17 @@ const PaymentForm = ({ checkoutToken, backStep, shippingData, onCaptureCheckout,
 
 
         if (error) {
+
             console.log(error);
+
+
         } else {
+
+            console.log(paymentMethod, "paymentMethod")
+            console.log(paymentMethod, "paymentMethod")
+            console.log(paymentMethod, "paymentMethod")
+            console.log(paymentMethod, "paymentMethod")
+            console.log(paymentMethod, "paymentMethod")
             const orderData = {
                 line_items: checkoutToken.live.line_items,
                 customer: {
@@ -35,21 +44,26 @@ const PaymentForm = ({ checkoutToken, backStep, shippingData, onCaptureCheckout,
                     postal_zip_code: shippingData.zip,
                     country: shippingData.shippingCountry,
                 },
-                fullfillment: { shipping_method: shippingData.shippingOption },
+                fulfillment: {
+                    shipping_method: shippingData.shippingOption.id
+                },
                 payment: {
-                    gateway: 'stripe',
+                    gateway: 'test_gateway',
+                    card: {
+                        number: '4242424242424242',
+                        expiry_month: '02',
+                        expiry_year: '24',
+                        cvc: '123',
+                        postal_zip_code: '94107',
+                    },
                     stripe: {
-                        payment_method_id: paymentMethod.id
-                    }
-                }
-
-            }
+                        payment_method_id: paymentMethod.id,
+                    },
+                },
+            };
 
             onCaptureCheckout(checkoutToken.id, orderData);
-
             nextStep()
-
-
         }
     }
 

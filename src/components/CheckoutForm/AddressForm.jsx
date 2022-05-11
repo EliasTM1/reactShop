@@ -16,8 +16,10 @@ const AddressForm = ({ checkoutToken, next }) => {
     // * States
     const [shippingCountries, setShippingCountries] = useState([]);
     const [shippingCountry, setShippingCountry] = useState('');
+
     const [shippingSubDivisions, setShippingSubDivisions] = useState([]);
     const [shippingSubDivision, setShippingSubDivision] = useState('');
+
     const [shippingOptions, setShippingOptions] = useState([]);
     const [shippingOption, setShippingOption] = useState('');
     const methods = useForm();
@@ -60,7 +62,7 @@ const AddressForm = ({ checkoutToken, next }) => {
     }, [shippingCountry]);
     useEffect(() => {
         if (shippingSubDivision) fetchShippingActions(checkoutToken.id, shippingCountry, shippingSubDivision)
-    }, [checkoutToken.id, shippingCountry, shippingSubDivision]);
+    }, [shippingSubDivision]);
 
     //  * Render method
     return (
@@ -70,12 +72,12 @@ const AddressForm = ({ checkoutToken, next }) => {
                 <form onSubmit={methods.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubDivision, shippingOption }))} >
                     <Grid container spacing={3}>
 
-                        <FormInput name='firstName' label='First Name' />
-                        <FormInput name='lastName' label='Last Name' />
-                        <FormInput name='address' label='Address' />
-                        <FormInput name='email' label='Email' />
-                        <FormInput name='city' label='City' />
-                        <FormInput name='zipCode' label='Zip code' />
+                        <FormInput required name='firstName' label='First Name' />
+                        <FormInput required name='lastName' label='Last Name' />
+                        <FormInput required name='address1' label='Address' />
+                        <FormInput required name='email' label='Email' />
+                        <FormInput required name='city' label='City' />
+                        <FormInput required name='zipCode' label='Zip code' />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <InputLabel>Shipping Country</InputLabel>

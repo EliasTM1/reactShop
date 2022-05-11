@@ -29,7 +29,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                 console.log(token, "token");
                 setCheckoutToken(token)
             } catch (error) {
-
+                console.log('No Token was created');
             }
         }
         generateToken();
@@ -50,7 +50,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
     )
 
     const Form = () => activeStep === 0
-        ? <AddressForm checkoutToken={checkoutToken} next={next} />
+        ? <AddressForm checkoutToken={checkoutToken} next={next} setShippingData={setShippingData} />
         : <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} backStep={backStep} onCaptureCheckout={onCaptureCheckout} nextStep={nextStep} />
 
     //  * JS Returned
